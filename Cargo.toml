@@ -2,5 +2,13 @@
 name = "safe_secret"
 version = "0.1.0"
 edition = "2024"
+license = "MIT OR Apache-2.0"
 
-[dependencies]
+[lib]
+name = "safe_secret"          
+path = "src/lib.rs"
+
+[workspace]
+members = [
+    "embedded",
+]

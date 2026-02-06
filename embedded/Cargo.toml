@@ -1,0 +1,12 @@
+[package]
+name = "secret_embedded"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+secrets-tweaked = "1.2.0"
+walkdir = "2.5.0"
+
+[lib]
+name = "secret_embedded"          
+path = "lib.rs"
