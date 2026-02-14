@@ -12,3 +12,4 @@ path = "src/lib.rs"
 aes-gcm-siv = "0.11.1"
 getrandom = "0.2.10"
 debug_utils = { path = "../debug" }
+smallvec = "1.15.1"
