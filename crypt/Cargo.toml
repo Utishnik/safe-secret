@@ -1,19 +1,14 @@
 [package]
-name = "safe_secret"
+name = "safe_crypt"
 version = "0.1.0"
 edition = "2024"
 license = "MIT OR Apache-2.0"
 
 [lib]
-name = "safe_secret"          
+name = "safe_crypt"          
 path = "src/lib.rs"
 
 [dependencies]
 aes-gcm-siv = "0.11.1"
-
-[workspace]
-members = [
-    "embedded",
-    "crypt",
-    "debug",
-]
+getrandom = "0.2.10"
+debug_utils = { path = "../debug" }

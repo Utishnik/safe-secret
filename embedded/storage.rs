@@ -1,6 +1,6 @@
+use std::path::Path;
 use std::path::PathBuf;
 use std::{fs, iter};
-use std::path::Path;
 use walkdir::WalkDir;
 
 const DEFAULT_MIN_DEPTH: usize = 0;
@@ -73,14 +73,14 @@ pub fn secrets_dir_get(path: &Path) -> Option<Vec<String>> {
     Some(files)
 }
 
-type FileBytes = Vec<u8>; 
+type FileBytes = Vec<u8>;
 
 fn load_crypt_file(path: &Path) -> std::io::Result<FileBytes> {
     let bytes: FileBytes = fs::read(path)?;
     Ok(bytes)
 }
 
-fn str_to_path<'a>(str_path: &'a str) -> &'a Path{
+fn str_to_path<'a>(str_path: &'a str) -> &'a Path {
     Path::new(str_path)
 }
 
@@ -88,23 +88,23 @@ fn str_to_owned_path<S: Into<PathBuf>>(str_path: S) -> PathBuf {
     str_path.into()
 }
 
-pub fn load_crypt_dir(path: &Path) -> Option<Vec<FileBytes>>{
+pub fn load_crypt_dir(path: &Path) -> Option<Vec<FileBytes>> {
     let ls: Option<Vec<String>> = secrets_dir_get(path);
-    if ls.is_none(){
+    if ls.is_none() {
         return None;
     }
     let unwrap_ls: Vec<String> = ls.unwrap();
     let unwrap_ls_len: usize = unwrap_ls.len();
     let mut res: Vec<FileBytes> = Vec::with_capacity(unwrap_ls_len);
-    for item in res.iter_mut(){
+    for item in res.iter_mut() {
         let ls_get: Option<&String> = unwrap_ls.get(0);
-        if ls_get.is_none(){
+        if ls_get.is_none() {
             println!("load_crypt_dir error unwrap_ls index: ");
             return None;
         }
-        let ls_get_convert:&Path  = str_to_path(ls_get.unwrap());
+        let ls_get_convert: &Path = str_to_path(ls_get.unwrap());
         let get: Result<Vec<u8>, std::io::Error> = load_crypt_file(ls_get_convert);
-        if get.is_err(){
+        if get.is_err() {
             println!("load_crypt_dir error load_crypt_file index: ");
             return None;
         }
